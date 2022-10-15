@@ -34,4 +34,36 @@ public class OrtopedicService {
             }
         }
     }
+
+    public Ortopedic update(Ortopedic o){
+        if(o.getId()!=null){
+            Optional<Ortopedic>g=ortopedicRepository.getOrtopedic(o.getId());
+            if(!g.isEmpty()){
+                if(o.getName()!=null){
+                    g.get().setName(o.getName());
+                }
+                if(o.getBrand() !=null){
+                    g.get().setBrand(o.getBrand());
+                }
+                if(o.getYear() !=null){
+                    g.get().setYear(o.getYear());
+                }
+                if(o.getDescription() !=null){
+                    g.get().setDescription(o.getDescription());
+                }
+                return ortopedicRepository.save(g.get());
+            }
+        }
+        return o;
+    }
+
+    public boolean deleteOrtopedic(int id){
+        Optional<Ortopedic> c = getOrtopedic(id);
+        if(!c.isEmpty()){
+            ortopedicRepository.delete((c.get()));
+            return true;
+        }
+        return false;
+    }
+
 }

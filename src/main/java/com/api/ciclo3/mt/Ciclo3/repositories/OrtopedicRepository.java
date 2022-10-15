@@ -23,4 +23,8 @@ public class OrtopedicRepository {
     public Ortopedic save(Ortopedic o) {
         return ortopedicCrudRepository.save(o);
     }
+
+    public void delete(Ortopedic o){
+        ortopedicCrudRepository.delete(o);
+    }
 }
