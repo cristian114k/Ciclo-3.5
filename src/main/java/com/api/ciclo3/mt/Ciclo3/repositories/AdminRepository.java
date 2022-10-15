@@ -1,6 +1,5 @@
 package com.api.ciclo3.mt.Ciclo3.repositories;
 
-
 import com.api.ciclo3.mt.Ciclo3.models.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,20 +10,23 @@ import java.util.Optional;
 @Repository
 public class AdminRepository {
     @Autowired
-    private AdminCRUDRepository adminCRUDRepository;
+    private AdminCrudRepository adminCrudRepository;
 
     public List<Admin> getAll(){
-        return(List<Admin>) adminCRUDRepository.findAll();
+        return (List<Admin>) adminCrudRepository.findAll();
     }
+
     public Optional<Admin> getAdmin(int id){
-        return (Optional<Admin>)adminCRUDRepository.findById(id);
+
+        return adminCrudRepository.findById(id);
     }
 
-    public Admin save(Admin c) {
-        return (Admin) adminCRUDRepository.save(c);
+    public Admin save(Admin admin){
+
+        return adminCrudRepository.save(admin);
     }
 
-    public  void delete(int id) {
-        adminCRUDRepository.deleteById(id);
+    public void delete(Admin admin){
+        adminCrudRepository.delete(admin);
     }
 }

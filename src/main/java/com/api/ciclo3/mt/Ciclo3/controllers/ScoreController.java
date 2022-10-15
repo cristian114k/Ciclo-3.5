@@ -1,7 +1,7 @@
 package com.api.ciclo3.mt.Ciclo3.controllers;
 
-import com.api.ciclo3.mt.Ciclo3.models.Client;
-import com.api.ciclo3.mt.Ciclo3.services.ClientService;
+import com.api.ciclo3.mt.Ciclo3.models.Score;
+import com.api.ciclo3.mt.Ciclo3.services.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,39 +10,36 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Client")
+@RequestMapping("/api/Score")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
-public class ClientController {
-
+public class ScoreController {
     @Autowired
-    ClientService clientService;
+    ScoreService scoreService;
 
     @GetMapping("/all")
-    public List<Client> getClients() {
-        return  clientService.getAll();
+    public List<Score> getAll() {
+        return  scoreService.getAll();
     }
 
     @GetMapping("{id}")
-    public Optional<Client> getClient(@PathVariable("id")int id) {
-        return clientService.getClient(id);
+    public Optional<Score> getScore(@PathVariable("id")int id) {
+        return scoreService.getScore(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client save(@RequestBody Client u) {
-        return clientService.save(u);
+    public Score save(@RequestBody Score o) {
+        return scoreService.save(o);
     }
-
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client update(@RequestBody Client u){
-        return clientService.update(u);
+    public Score update(@RequestBody Score r){
+        return scoreService.update(r);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean deleteClient(@PathVariable("id")int id) {
-        return clientService.deleteClient(id);
+    public boolean deleteReservation(@PathVariable("id")int id){
+        return scoreService.deleteScore(id);
     }
-
 }

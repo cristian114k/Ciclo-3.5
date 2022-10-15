@@ -12,7 +12,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/Admin")
 public class AdminController {
-
     @Autowired
     private AdminService adminService;
 
@@ -22,25 +21,26 @@ public class AdminController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Admin> getAdmin(@PathVariable("id") int id){
+    public Optional<Admin> getAdmin(@PathVariable("id")int id){
         return adminService.getAdmin(id);
     }
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Admin save(@RequestBody Admin obj){
-        return adminService.save(obj);
+    public Admin save(@RequestBody Admin admin){
+        return adminService.save(admin);
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Admin update(@RequestBody Admin obj){
-        return adminService.update(obj);
+    public Admin update(@RequestBody Admin admin) {
+        return adminService.update(admin);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Boolean delete(@PathVariable("id") int id){
-        return adminService.delete(id);
+    public void delete(@PathVariable("id") Integer id) {
+        adminService.deleteAdmin(id);
     }
+
 }

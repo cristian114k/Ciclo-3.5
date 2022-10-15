@@ -1,5 +1,7 @@
 package com.api.ciclo3.mt.Ciclo3.controllers;
 
+import com.api.ciclo3.mt.Ciclo3.models.CountClient;
+import com.api.ciclo3.mt.Ciclo3.models.DescriptionAmount;
 import com.api.ciclo3.mt.Ciclo3.models.Reservation;
 import com.api.ciclo3.mt.Ciclo3.services.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,32 @@ public class ReservationController {
     @ResponseStatus(HttpStatus.CREATED)
     public Reservation save(@RequestBody Reservation r) {
         return reservationService.save(r);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Reservation update(@RequestBody Reservation r){
+        return reservationService.update(r);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteReservation(@PathVariable("id")int id){
+        return reservationService.deleteReservation(id);
+    }
+
+    @GetMapping("/report-status")
+    public DescriptionAmount getClientDescriptionStatus(){
+        return reservationService.getStatusReport();
+    }
+
+    @GetMapping("/report-clients")
+    public List<CountClient> getCountClients(){
+        return reservationService.getTopClients();
+    }
+
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getDatesReport(@PathVariable("dateOne")String d1, @PathVariable("dateTwo")String d2){
+        return reservationService.getReservationsPeriod(d1, d2);
     }
 }

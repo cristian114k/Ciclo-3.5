@@ -1,40 +1,24 @@
 package com.api.ciclo3.mt.Ciclo3.models;
+import javax.persistence.*;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import java.io.Serializable;
-
-public class Admin implements Serializable {
+@Entity
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+    private Integer idAdmin;
     @Column(length = 250)
     private String name;
-
     @Column(length = 45)
     private String email;
-
     @Column(length = 45)
     private String password;
 
-    public Integer getId() {
-        return id;
+    public Integer getIdAdmin() {
+        return idAdmin;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setIdAdmin(Integer idAdmin) {
+        this.idAdmin = idAdmin;
     }
 
     public String getEmail() {
@@ -43,6 +27,14 @@ public class Admin implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

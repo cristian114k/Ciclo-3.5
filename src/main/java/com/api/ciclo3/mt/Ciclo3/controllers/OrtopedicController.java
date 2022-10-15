@@ -32,4 +32,16 @@ public class OrtopedicController {
     public Ortopedic save(@RequestBody Ortopedic o) {
         return ortopedicService.save(o);
     }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Ortopedic update(@RequestBody Ortopedic o){
+        return ortopedicService.update(o);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean deleteOrtopedic(@PathVariable("id")int id){
+        return ortopedicService.deleteOrtopedic(id);
+    }
 }
